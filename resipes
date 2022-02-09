@@ -1,11 +1,69 @@
-roti
-soop
-rise
-cold drinks
+import { TestScheduler } from "jest";
+import React from "react";
+import {
+    View,
+  Text,
+  TextInput,
+  Button,
+    StyleSheet,
+}
+    from 'react-native';
+class App extends React.Component
+{
 
-pury
-shrikhand
+  constructor()
+  {
+    super()
+    this.state = {
+      nam: "",
+       pass: "",
+      isshow:false
+    }
+  }
 
-checken
+    render() {
+      return (
+        <View >
+          <Text style={{fontSize:40}}>
+              {this.state.nam}
+          </Text>
+          <Text style={{fontSize:40,color:'blue',textAlign: 'center'}}>
+            LOGIN
+          </Text>
+          <TextInput placeholder={"Enter Your Email.."} style={styles.txtin} onChangeText={(e)=>{this.setState({nam:e})}}  />
+          <TextInput placeholder={"Enter  Password.."} secureTextEntry={true} style={styles.txtin} onChangeText={(e) => { this.setState({ pass: e }) }}/>
 
-welcome drinks
+            <Button title="SUBMIT" style={styles.btn}
+               onPress={() => { this.setState({ isshow: true }) }} />
+            {this.state.isshow &&
+               <Text>
+                  {this.state.nam}
+
+
+               </Text>
+            }
+            {this.state.isshow &&
+               <Text>{this.state.pass}</Text>
+            }
+        </View>
+      );
+    }
+}
+
+const styles = StyleSheet.create({
+  txtin:{
+    borderWidth: 2,
+    padding: 10,
+    marginHorizontal:20,
+    marginVertical:15
+  },
+  btn: {
+    borderWidth: 3,
+    padding: 10,
+    marginHorizontal: 20,
+    marginVertical:15
+  }
+
+})
+
+export default App;
